@@ -20,6 +20,7 @@ const GlobalStyle = createGlobalStyle<{theme: ColorTheme}>`
   * {
     margin: 0;
     padding: 0;
+    font-size: 16px;
   }
 `
 
@@ -31,6 +32,15 @@ const theme = {
 };
 
 const materialTheme = createTheme({
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 768,
+            md: 900,
+            lg: 1200,
+            xl: 1536,
+        },
+    },
     palette: {
         primary: {
             main: theme.primary,

@@ -56,7 +56,7 @@ const Login: React.FC = () => {
                     <ErrorList>
                         {errors.map((error, index) => {
                             return (
-                                <li key={index}>{error}</li>
+                                <ErrorItem key={index}>{error}</ErrorItem>
                             )
                         })}
                     </ErrorList>
@@ -75,19 +75,42 @@ const Wrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+  }
 `
 
 const LoginForm = styled.div`
-    background-color: ${p => p.theme.secondary};
-    padding: 35px;
-    display: flex;
-    flex-direction: column;
+  background-color: ${p => p.theme.secondary};
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 10px;
+  flex: 1;
+  font-size: 20px;
+  
+  @media (min-width: 768px) {
+    flex: none;
     gap: 20px;
-    border-radius: 10px;
+    padding: 35px;
+  }
 `
 
 const ErrorList = styled.ul`
   list-style-position: inside;
-  font-size: 14px;
   color: red;
+`
+
+const ErrorItem = styled.li`
+  font-size: 16px;
+  text-indent: -22px;
+  margin-left: 22px;
+  
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
 `
