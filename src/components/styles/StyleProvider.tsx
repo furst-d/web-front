@@ -1,12 +1,26 @@
 import React from 'react';
 import {createGlobalStyle, ThemeProvider as StyledThemeProvider} from "styled-components";
 import {createTheme, ThemeProvider as MaterialThemeProvider} from "@mui/material/styles";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const StyleProvider: ({children}: { children: any }) => JSX.Element = ({children}) => {
     return (
         <StyledThemeProvider theme={theme}>
             <MaterialThemeProvider theme={materialTheme}>
                 <GlobalStyle />
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={3000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss={false}
+                    draggable={false}
+                    pauseOnHover={false}
+                    theme="dark"
+                />
                 {children}
             </MaterialThemeProvider>
         </StyledThemeProvider>
@@ -15,21 +29,22 @@ const StyleProvider: ({children}: { children: any }) => JSX.Element = ({children
 
 export default StyleProvider;
 
-
-const GlobalStyle = createGlobalStyle<{theme: ColorTheme}>`
-  * {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-  }
-`
-
 const theme = {
     bg: "#323232",
     primary: "#3da2f3",
     secondary: "#3f3f3f",
     text: "#f3fff3"
 };
+
+const GlobalStyle = createGlobalStyle<{theme: ColorTheme}>`
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .Toastify__toast-theme--dark {
+    background-color: ${theme.secondary};
+  }
+`
 
 const materialTheme = createTheme({
     breakpoints: {

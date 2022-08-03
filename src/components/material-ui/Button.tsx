@@ -9,6 +9,15 @@ const Button = styled(LoadingButton)<LoadingButtonProps>(({theme}) => ({
         color: theme.palette.primary.contrastText
     },
 
+    '& .MuiButton-startIcon': {
+        '&>*:nth-of-type(1)': {
+            fontSize: 25,
+            [theme.breakpoints.up('sm')]: {
+                fontSize: 20
+            },
+        }
+    },
+
     [theme.breakpoints.up('sm')]: {
         fontSize: 16
     },

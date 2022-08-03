@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Button from "../material-ui/Button";
 import TextField from "../material-ui/TextField";
 import LoginIcon from '@mui/icons-material/Login';
+import axios from "axios";
+import {encrypt} from "../../utils/crypto/cryptoManager";
 
 const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
@@ -11,6 +13,17 @@ const Login: React.FC = () => {
     const [password, setPassword] = useState<string>("");
     const [passwordError, setPasswordError] = useState<boolean>(false);
     const [errors, setErrors] = useState<string[]>([]);
+    const [status, setStatus] = useState(200);
+
+    const handleError = () => {
+        switch (status) {
+            case 401:
+            case 400:
+                return (<ErrorItem>Chybné uživatelské jméno nebo email.</ErrorItem>)
+            default:
+                return (<ErrorItem>Při zpracování požadavku došlo k chybě.</ErrorItem>)
+        }
+    }
 
     const validateLogin = () => {
         let error: boolean = false;
@@ -36,11 +49,31 @@ const Login: React.FC = () => {
 
         if(!error) {
             setLoading(true);
+            handleLogin();
         }
     }
 
     const handleLogin = () => {
+        axios.post(process.env.REACT_APP_BASE_URL + `/api/users/login`, {
+            username: username,
+            password: password
+        })
+            .then(res => {
+                const tokens = {
+                    access_token: res.data.access_token,
+                    refresh_token: res.data.refresh_token
+                }
+                localStorage.setItem("auth_token", encrypt(JSON.stringify(tokens)));
+                localStorage.setItem("toast", "Přihlášení bylo úspěšné");
+                window.location.reload();
+            })
 
+            .catch((error) => {
+                if(error.response) {
+                    console.log(error.response.data);
+                    setStatus(error.response.status);
+                }
+            });
     }
 
     function isValidEmail() {
@@ -61,6 +94,11 @@ const Login: React.FC = () => {
                         })}
                     </ErrorList>
                 }
+                {status !== 200 && (
+                    <ErrorList>
+                        {handleError()}
+                    </ErrorList>
+                )}
                 <Button variant="contained" loading={loading} startIcon={<LoginIcon />} loadingPosition="start" onClick={validateLogin}>Přihlásit se</Button>
             </LoginForm>
         </Wrap>
@@ -73,12 +111,12 @@ export default Login;
 const Wrap = styled.div`
   height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 
-  @media (max-width: 768px) {
-    align-items: flex-start;
-    justify-content: flex-start;
+  @media (min-width: 768px) {
+    align-items: center;
+    justify-content: center;
     width: 100%;
   }
 `
@@ -92,7 +130,7 @@ const LoginForm = styled.div`
   border-radius: 10px;
   flex: 1;
   font-size: 20px;
-  
+
   @media (min-width: 768px) {
     flex: none;
     gap: 20px;
@@ -109,7 +147,7 @@ const ErrorItem = styled.li`
   font-size: 16px;
   text-indent: -22px;
   margin-left: 22px;
-  
+
   @media (min-width: 768px) {
     font-size: 14px;
   }

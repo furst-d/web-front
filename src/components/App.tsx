@@ -3,14 +3,17 @@ import Navbar from "./navbar/Navbar";
 import styled from "styled-components";
 import AuthProvider from "./auth/AuthProvider";
 import StyleProvider from "./styles/StyleProvider";
+import ToastProvider from "./toast/ToastProvider";
 
 function App() {
   return (
       <StyleProvider>
           <Application>
-              <AuthProvider>
-                  <Navbar />
-              </AuthProvider>
+              <ToastProvider>
+                  <AuthProvider>
+                      <Navbar />
+                  </AuthProvider>
+              </ToastProvider>
           </Application>
       </StyleProvider>
   );
