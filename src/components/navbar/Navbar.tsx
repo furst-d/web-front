@@ -1,13 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import NavItemsSection from "./NavItemsSection";
 import NavUserSection from "./NavUserSection";
 
 const Navbar = () => {
+    const [openHamburgerMenu, setOpenHamburgerMenu] = useState<boolean>(false);
+
+    const updateOpenHamburgerMenu = (value: boolean) => {
+        setOpenHamburgerMenu(value);
+    }
+
     return (
         <NavWrapper>
-            <NavItemsSection />
-            <NavUserSection />
+            <NavItemsSection openHamburgerMenu={openHamburgerMenu} setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
+            <NavUserSection setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
         </NavWrapper>
     );
 };

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import Button from "../material-ui/Button";
-import TextField from "../material-ui/TextField";
+import Button from "../material-ui/components/Button";
+import TextField from "../material-ui/components/TextField";
 import LoginIcon from '@mui/icons-material/Login';
 import axios from "axios";
 import {encrypt} from "../../utils/crypto/cryptoManager";
