@@ -18,6 +18,7 @@ const BurgerNav = styled.div<Props>`
   padding: 20px;
   transform: ${props => props.show ? 'translateX(0)' : 'translateX(-100%)'};
   transition: transform 0.2s;
+  overflow-y:scroll;
   
   li {
     padding: 5px 0;
