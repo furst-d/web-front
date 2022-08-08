@@ -3,7 +3,18 @@ import styled from "styled-components";
 import NavItemsSection from "./NavItemsSection";
 import NavUserSection from "./NavUserSection";
 
-const Navbar = () => {
+export interface PageProp {
+    path: string,
+    component_name: string,
+    description: string,
+    icon_name: string
+}
+
+interface NavbarProp {
+    pages: PageProp[]
+}
+
+const Navbar = ({pages}: NavbarProp) => {
     const [openHamburgerMenu, setOpenHamburgerMenu] = useState<boolean>(false);
 
     const updateOpenHamburgerMenu = (value: boolean) => {
@@ -12,7 +23,7 @@ const Navbar = () => {
 
     return (
         <NavWrapper>
-            <NavItemsSection openHamburgerMenu={openHamburgerMenu} setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
+            <NavItemsSection pages={pages} openHamburgerMenu={openHamburgerMenu} setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
             <NavUserSection setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
         </NavWrapper>
     );

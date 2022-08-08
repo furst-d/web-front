@@ -1,15 +1,15 @@
 import React from 'react';
 import Login from "../login/Login";
-import {decrypt} from "../../utils/crypto/cryptoManager";
 import { isExpired } from "react-jwt";
+import {getTokens, removeTokens} from "../../utils/auth/AuthManager";
 
 const AuthProvider: ({children}: { children: any }) => JSX.Element = ({children}) => {
     const checkAuth = () => {
-        const token = localStorage.getItem("auth_token");
-        if(token) {
-            const refreshToken = JSON.parse(decrypt(token)).refresh_token;
+        const tokens = getTokens();
+        if(tokens) {
+            const refreshToken = tokens.refresh_token;
             if(isExpired(refreshToken)) {
-                localStorage.removeItem("auth_token");
+                removeTokens();
                 return false;
             }
             return true;

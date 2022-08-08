@@ -9,13 +9,35 @@ import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CastIcon from '@mui/icons-material/Cast';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import NavItemsWrapper from "./NavItemsWrapper";
+import TrafficIcon from '@mui/icons-material/Traffic';
+import {PageProp} from "./Navbar";
 
 interface NavItemsSectionProp {
+    pages: PageProp[]
     openHamburgerMenu: boolean;
     setOpenHamburgerMenu: (value: boolean) => void;
 }
 
-const NavItemsSection = ({openHamburgerMenu, setOpenHamburgerMenu}: NavItemsSectionProp) => {
+const NavItemsSection = ({pages, openHamburgerMenu, setOpenHamburgerMenu}: NavItemsSectionProp) => {
+
+    const Icons: any = {
+        "RestaurantIcon": RestaurantIcon,
+        "ViewInArIcon": ViewInArIcon,
+        "CastIcon": CastIcon,
+        "FormatListBulletedIcon": FormatListBulletedIcon,
+        "TrafficIcon": TrafficIcon,
+        "AdminPanelSettingsIcon": AdminPanelSettingsIcon
+    };
+
+    const mapPages = () => {
+        return pages.map((page, index) => {
+            const Icon = React.createElement(Icons[page.icon_name]);
+            return (
+                <li key={index}><NavItemsWrapper>{Icon} {page.description} </NavItemsWrapper></li>
+            )
+        });
+    }
+
     return (
         <Header>
             <HamburgerMenu onClick={() => {
@@ -25,18 +47,10 @@ const NavItemsSection = ({openHamburgerMenu, setOpenHamburgerMenu}: NavItemsSect
                 <CloseButtonWrapper>
                     <CloseButton onClick={() => setOpenHamburgerMenu(false)} />
                 </CloseButtonWrapper>
-                <li><NavItemsWrapper><RestaurantIcon /> Jídelníček</NavItemsWrapper></li>
-                <li><NavItemsWrapper><ViewInArIcon /> Minecraft list</NavItemsWrapper></li>
-                <li><NavItemsWrapper><CastIcon /> Twitch</NavItemsWrapper></li>
-                <li><NavItemsWrapper><FormatListBulletedIcon /> Zápisník</NavItemsWrapper></li>
-                <li><NavItemsWrapper><AdminPanelSettingsIcon /> Admin panel</NavItemsWrapper></li>
+                {mapPages()}
             </BurgerNav>
             <Menu>
-                <li><NavItemsWrapper><RestaurantIcon /> Jídelníček</NavItemsWrapper></li>
-                <li><NavItemsWrapper><ViewInArIcon /> Minecraft list</NavItemsWrapper></li>
-                <li><NavItemsWrapper><CastIcon /> Twitch</NavItemsWrapper></li>
-                <li><NavItemsWrapper><FormatListBulletedIcon /> Zápisník</NavItemsWrapper></li>
-                <li><NavItemsWrapper><AdminPanelSettingsIcon /> Admin panel</NavItemsWrapper></li>
+                {mapPages()}
             </Menu>
         </Header>
     );

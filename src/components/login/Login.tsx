@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Button from "../material-ui/components/Button";
 import TextField from "../material-ui/components/TextField";
 import LoginIcon from '@mui/icons-material/Login';
-import axios from "axios";
-import {encrypt} from "../../utils/crypto/cryptoManager";
+import axios from "../../api/axios";
+import {setTokens} from "../../utils/auth/AuthManager";
 
 const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
@@ -54,16 +54,12 @@ const Login: React.FC = () => {
     }
 
     const handleLogin = () => {
-        axios.post(process.env.REACT_APP_BASE_URL + `/api/users/login`, {
+        axios.post(`/api/users/login`, {
             username: username,
             password: password
         })
             .then(res => {
-                const tokens = {
-                    access_token: res.data.access_token,
-                    refresh_token: res.data.refresh_token
-                }
-                localStorage.setItem("auth_token", encrypt(JSON.stringify(tokens)));
+                setTokens(res.data.access_token, res.data.refresh_token);
                 localStorage.setItem("toast", "Přihlášení bylo úspěšné");
                 window.location.reload();
             })

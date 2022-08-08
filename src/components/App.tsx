@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from "./navbar/Navbar";
 import styled from "styled-components";
 import AuthProvider from "./auth/AuthProvider";
 import StyleProvider from "./styles/StyleProvider";
 import ToastProvider from "./toast/ToastProvider";
+import PagesProvider from "./pages/PagesProvider";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
           <Application>
               <ToastProvider>
                   <AuthProvider>
-                      <Navbar />
+                      <PagesProvider />
                   </AuthProvider>
               </ToastProvider>
           </Application>
