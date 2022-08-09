@@ -4,6 +4,7 @@ import AuthProvider from "./auth/AuthProvider";
 import StyleProvider from "./styles/StyleProvider";
 import ToastProvider from "./toast/ToastProvider";
 import PagesProvider from "./pages/PagesProvider";
+import {BrowserRouter as Router} from "react-router-dom";
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
           <Application>
               <ToastProvider>
                   <AuthProvider>
-                      <PagesProvider />
+                      <Router>
+                          <PagesProvider />
+                      </Router>
                   </AuthProvider>
               </ToastProvider>
           </Application>

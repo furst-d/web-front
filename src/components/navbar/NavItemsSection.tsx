@@ -8,9 +8,9 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CastIcon from '@mui/icons-material/Cast';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import NavItemsWrapper from "./NavItemsWrapper";
 import TrafficIcon from '@mui/icons-material/Traffic';
 import {PageProp} from "./Navbar";
+import {NavLink} from "react-router-dom";
 
 interface NavItemsSectionProp {
     pages: PageProp[]
@@ -33,7 +33,7 @@ const NavItemsSection = ({pages, openHamburgerMenu, setOpenHamburgerMenu}: NavIt
         return pages.map((page, index) => {
             const Icon = React.createElement(Icons[page.icon_name]);
             return (
-                <li key={index}><NavItemsWrapper>{Icon} {page.description} </NavItemsWrapper></li>
+                <li key={index}><StyledLink to={page.path} onClick={() => setOpenHamburgerMenu(false)} className="link-active" >{Icon} {page.description}</StyledLink></li>
             )
         });
     }
@@ -74,5 +74,26 @@ const Menu = styled.ul`
 const CloseButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+`
+
+export const StyledLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 15px 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${p => p.theme.primary};
+  }
+  
+  &:-webkit-any-link {
+    color: unset;
+    text-decoration: none;
+  }
+  
+  &.active {
+    background: ${p => p.theme.primary};
+  }
 `
 

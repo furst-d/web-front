@@ -5,6 +5,7 @@ import TextField from "../material-ui/components/TextField";
 import LoginIcon from '@mui/icons-material/Login';
 import axios from "../../api/axios";
 import {setTokens} from "../../utils/auth/AuthManager";
+import {Helmet} from "react-helmet";
 
 const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
@@ -66,8 +67,8 @@ const Login: React.FC = () => {
 
             .catch((error) => {
                 if(error.response) {
-                    console.log(error.response.data);
                     setStatus(error.response.status);
+                    setLoading(false);
                 }
             });
     }
@@ -78,6 +79,9 @@ const Login: React.FC = () => {
 
     return (
         <Wrap>
+            <Helmet>
+                <title>Přihlásit se</title>
+            </Helmet>
             <LoginForm>
                 <TextField onChange={e => setUsername(e.target.value)} error={usernameError} required label="Email" />
                 <TextField onChange={e => setPassword(e.target.value)} error={passwordError} required label="Heslo"  type="password" />

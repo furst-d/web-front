@@ -8,12 +8,18 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import Menu from "../material-ui/components/Menu";
 import Divider from "../material-ui/components/Divider";
+import {getTokens, removeTokens} from "../../utils/auth/AuthManager"
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import {NavLink, useNavigate} from "react-router-dom";
 
 interface NavUserSectionProp {
     setOpenHamburgerMenu: (value: boolean) => void;
 }
 
 const NavUserSection = ({ setOpenHamburgerMenu}: NavUserSectionProp) => {
+    const axiosPrivate = useAxiosPrivate();
+    const navigate = useNavigate();
+
     const [anchorProfile, setAnchorProfile] = React.useState<null | HTMLElement>(null);
     const openProfile = Boolean(anchorProfile);
     const [anchorBadge, setAnchorBadge] = React.useState<null | HTMLElement>(null);
@@ -35,6 +41,21 @@ const NavUserSection = ({ setOpenHamburgerMenu}: NavUserSectionProp) => {
         setAnchorBadge(null);
     };
 
+    const handleLogout = () => {
+        handleCloseProfile();
+
+        axiosPrivate.delete(`/api/users/logout`, {
+            data: {
+                token: getTokens().refresh_token
+            }
+        }).then(() => {
+            removeTokens();
+            localStorage.setItem("toast", "Odhlášení bylo úspěšné");
+            navigate("/");
+            window.location.reload();
+        })
+    }
+
     return (
         <UserSection>
             <CustomBadge onClick={handleClickBadge} color="primary" badgeContent={1}  max={999}>
@@ -55,18 +76,20 @@ const NavUserSection = ({ setOpenHamburgerMenu}: NavUserSectionProp) => {
                 anchorEl={anchorProfile}
                 open={openProfile}
                 onClose={handleCloseProfile}>
-                <MenuItem onClick={handleCloseProfile} disableRipple>
-                    <AccountBoxIcon />
-                    Profil
-                </MenuItem>
-                <MenuItem onClick={handleCloseProfile} disableRipple>
-                    <SettingsIcon />
-                    Nastavení
-                </MenuItem>
+                <StyledLink to="/profile">
+                    <MenuItem onClick={handleCloseProfile} disableRipple>
+                        <AccountBoxIcon />Profil
+                    </MenuItem>
+                </StyledLink>
+                <StyledLink to="/profile-settings">
+                    <MenuItem onClick={handleCloseProfile} disableRipple>
+                        <SettingsIcon />Nastavení
+                     </MenuItem>
+                </StyledLink>
                 <Divider />
-                <MenuItem onClick={handleCloseProfile} disableRipple>
-                    <LogoutIcon style={{color: "red"}} />
-                    <span style={{color: "red"}}> Odhlásit se</span>
+                <MenuItem onClick={handleLogout} disableRipple>
+                        <LogoutIcon style={{color: "red"}} />
+                        <span style={{color: "red"}}> Odhlásit se</span>
                 </MenuItem>
             </Menu>
         </UserSection>
@@ -95,4 +118,16 @@ const CustomBadge = styled(Badge)`
 
 const CustomNotificationIcon = styled(NotificationsIcon)`
   font-size: 50px;
+`
+
+
+export const StyledLink = styled(NavLink)`
+  &:hover {
+    background-color: ${p => p.theme.primary};
+  }
+  
+  &:-webkit-any-link {
+    color: unset;
+    text-decoration: none;
+  }
 `
