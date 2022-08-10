@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {useParams} from "react-router-dom";
-import {Form, CenterFormWrap} from "../login/Login";
 import {Helmet} from "react-helmet";
 import TextField from "../material-ui/components/TextField";
 import LoginIcon from "@mui/icons-material/Login";
 import Button from "../material-ui/components/Button";
 import {ErrorItem, ErrorList} from "../form/Error";
+import {CenterFormWrap, Form} from "../form/Form";
 
 const RegistrationSettings = () => {
     const { token } = useParams();

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import styled from "styled-components";
 import Button from "../material-ui/components/Button";
 import TextField from "../material-ui/components/TextField";
 import LoginIcon from '@mui/icons-material/Login';
@@ -7,6 +6,7 @@ import axios from "../../api/axios";
 import {setTokens} from "../../utils/auth/AuthManager";
 import {Helmet} from "react-helmet";
 import {ErrorItem, ErrorList} from "../form/Error";
+import {CenterFormWrap, Form} from "../form/Form";
 
 const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
@@ -108,35 +108,5 @@ const Login: React.FC = () => {
 };
 
 export default Login;
-
-export const CenterFormWrap = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-
-  @media (min-width: 768px) {
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-`
-
-export const Form = styled.div`
-  background-color: ${p => p.theme.secondary};
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  border-radius: 10px;
-  flex: 1;
-  font-size: 20px;
-
-  @media (min-width: 768px) {
-    flex: none;
-    gap: 20px;
-    padding: 35px;
-  }
-`
 
 
