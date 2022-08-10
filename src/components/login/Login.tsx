@@ -6,6 +6,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import axios from "../../api/axios";
 import {setTokens} from "../../utils/auth/AuthManager";
 import {Helmet} from "react-helmet";
+import {ErrorItem, ErrorList} from "../form/Error";
 
 const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
@@ -78,11 +79,11 @@ const Login: React.FC = () => {
     }
 
     return (
-        <Wrap>
+        <CenterFormWrap>
             <Helmet>
                 <title>Přihlásit se</title>
             </Helmet>
-            <LoginForm>
+            <Form>
                 <TextField onChange={e => setUsername(e.target.value)} error={usernameError} required label="Email" />
                 <TextField onChange={e => setPassword(e.target.value)} error={passwordError} required label="Heslo"  type="password" />
                 {errors.length > 0 &&
@@ -100,15 +101,15 @@ const Login: React.FC = () => {
                     </ErrorList>
                 )}
                 <Button variant="contained" loading={loading} startIcon={<LoginIcon />} loadingPosition="start" onClick={validateLogin}>Přihlásit se</Button>
-            </LoginForm>
-        </Wrap>
+            </Form>
+        </CenterFormWrap>
 
     );
 };
 
 export default Login;
 
-const Wrap = styled.div`
+export const CenterFormWrap = styled.div`
   height: 100vh;
   display: flex;
   align-items: flex-start;
@@ -121,7 +122,7 @@ const Wrap = styled.div`
   }
 `
 
-const LoginForm = styled.div`
+export const Form = styled.div`
   background-color: ${p => p.theme.secondary};
   padding: 10px;
   display: flex;
@@ -138,17 +139,4 @@ const LoginForm = styled.div`
   }
 `
 
-const ErrorList = styled.ul`
-  list-style-position: inside;
-  color: red;
-`
 
-const ErrorItem = styled.li`
-  font-size: 16px;
-  text-indent: -22px;
-  margin-left: 22px;
-
-  @media (min-width: 768px) {
-    font-size: 14px;
-  }
-`

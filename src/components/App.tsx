@@ -7,19 +7,19 @@ import PagesProvider from "./pages/PagesProvider";
 import {BrowserRouter as Router} from "react-router-dom";
 
 function App() {
-  return (
-      <StyleProvider>
-          <Application>
-              <ToastProvider>
-                  <AuthProvider>
-                      <Router>
-                          <PagesProvider />
-                      </Router>
-                  </AuthProvider>
-              </ToastProvider>
-          </Application>
-      </StyleProvider>
-  );
+    return (
+        <StyleProvider>
+            <Application>
+                <ToastProvider>
+                    <Router>
+                        <AuthProvider>
+                            <PagesProvider />
+                        </AuthProvider>
+                    </Router>
+                </ToastProvider>
+            </Application>
+        </StyleProvider>
+    );
 }
 
 export default App;
