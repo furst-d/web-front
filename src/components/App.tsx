@@ -29,5 +29,7 @@ const Application = styled.div`
   color: ${p => p.theme.text};
   height: 100vh;
   font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
 `
 

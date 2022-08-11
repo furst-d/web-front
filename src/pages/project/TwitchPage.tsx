@@ -1,14 +1,15 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
+import {Content} from "../../components/content/Content";
 
 const TwitchPage = () => {
     return (
-        <div>
+        <Content>
             <Helmet>
                 <title>Twitch</title>
             </Helmet>
             Twitch
-        </div>
+        </Content>
     );
 };
 

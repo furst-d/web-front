@@ -1,14 +1,15 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
+import {Content} from "../../components/content/Content";
 
 const TrafficLightPage = () => {
     return (
-        <div>
+        <Content>
             <Helmet>
                 <title>Semafor</title>
             </Helmet>
             Semafor
-        </div>
+        </Content>
     );
 };
 

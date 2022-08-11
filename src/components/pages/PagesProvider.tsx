@@ -72,12 +72,13 @@ export default PagesProvider;
 const Container = styled.div`
   display: flex;
   justify-content: center;
+  flex: 1 1 auto;
 `
 
 const ContentWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 30px;
-  width: 80em;
-  align-items: center;
+  max-width: 90em;
+  width: 100%;
+  flex: 1 1 auto;
 `

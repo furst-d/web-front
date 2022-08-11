@@ -1,15 +1,17 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
+import {Content} from "../../components/content/Content";
 
 const CookBookPage = () => {
     return (
-        <div>
-            <Helmet>
-                <title>Jídelníček</title>
-            </Helmet>
-            Jídelníček
-        </div>
+            <Content>
+                <Helmet>
+                    <title>Jídelníček</title>
+                </Helmet>
+                Jídelníček
+            </Content>
     );
 };
 
 export default CookBookPage;
+

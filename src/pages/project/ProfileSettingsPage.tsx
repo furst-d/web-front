@@ -1,14 +1,15 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
+import {Content} from "../../components/content/Content";
 
 const ProfileSettingsPage = () => {
     return (
-        <div>
+        <Content>
             <Helmet>
                 <title>Nastavení</title>
             </Helmet>
             Nastavení
-        </div>
+        </Content>
     );
 };
 
