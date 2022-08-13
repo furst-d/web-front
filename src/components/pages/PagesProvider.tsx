@@ -7,7 +7,7 @@ import MCListPage from "../../pages/project/MCListPage";
 import TwitchPage from "../../pages/project/TwitchPage";
 import TravelListPage from "../../pages/project/TravelListPage";
 import TrafficLightPage from "../../pages/project/TrafficLightPage";
-import AdminPanelPage from "../../pages/project/AdminPanelPage";
+import AdminPanelPage from "../../pages/project/admin-panel/AdminPanelPage";
 import NotFoundPage from "../../pages/abstract/NotFoundPage";
 import styled from "styled-components";
 import ProfilePage from "../../pages/project/ProfilePage";

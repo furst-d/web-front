@@ -15,6 +15,7 @@ export const CenterFormWrap = styled.div`
 
 export const Form = styled.div`
   background-color: ${p => p.theme.secondary};
+  color: ${p => p.theme.text};
   padding: 10px;
   display: flex;
   flex-direction: column;

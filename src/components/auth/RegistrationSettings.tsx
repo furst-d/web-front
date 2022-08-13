@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import TextField from "../material-ui/components/TextField";
 import LoginIcon from "@mui/icons-material/Login";
 import Button from "../material-ui/components/Button";
-import {ErrorItem, ErrorList} from "../form/Error";
 import {CenterFormWrap, Form} from "../form/Form";
+import axios from "../../api/axios";
+import ErrorForm, {ErrorItem, ErrorList} from "../form/ErrorForm";
 
 const RegistrationSettings = () => {
-    const { token } = useParams();
+    const token = window.location.pathname.split("/")[2];
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [password, setPassword] = useState<string>("");
     const [passwordConfirm, setPasswordConfirm] = useState<string>("");
@@ -21,6 +23,8 @@ const RegistrationSettings = () => {
         switch (status) {
             case 400:
                 return (<ErrorItem>Potvrzovací token není platný.</ErrorItem>)
+            case 404:
+                return (<ErrorItem>Potvrzovací token je chybný nebo je již aktivován.</ErrorItem>)
             default:
                 return (<ErrorItem>Při zpracování požadavku došlo k chybě.</ErrorItem>)
         }
@@ -60,8 +64,24 @@ const RegistrationSettings = () => {
     }
 
     const handleAccountActivate = () => {
-        console.log(token);
-        setStatus(400);
+        axios.post(`/api/users/activate`, {
+            token: token,
+            password: password
+        }).then(res => {
+            if(res.data.affected === 0) {
+                setStatus(404);
+                setLoading(false);
+            } else {
+                localStorage.setItem("toast", "Účet byl úspěšně aktivován");
+                navigate("/");
+                window.location.reload();
+            }
+        }).catch((error) => {
+                if(error.response) {
+                    setStatus(error.response.status);
+                    setLoading(false);
+                }
+            });
     }
 
     return (
@@ -72,15 +92,7 @@ const RegistrationSettings = () => {
             <Form>
                 <TextField type="password" onChange={e => setPassword(e.target.value)} error={passwordError} required label="Nové heslo"  />
                 <TextField type="password" onChange={e => setPasswordConfirm(e.target.value)} error={passwordConfirmError} required label="Potvrzení hesla" />
-                {errors.length > 0 &&
-                    <ErrorList>
-                        {errors.map((error, index) => {
-                            return (
-                                <ErrorItem key={index}>{error}</ErrorItem>
-                            )
-                        })}
-                    </ErrorList>
-                }
+                <ErrorForm errors={errors} />
                 {status !== 200 && (
                     <ErrorList>
                         {handleError()}

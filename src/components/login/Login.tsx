@@ -5,7 +5,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import axios from "../../api/axios";
 import {setTokens} from "../../utils/auth/AuthManager";
 import {Helmet} from "react-helmet";
-import {ErrorItem, ErrorList} from "../form/Error";
+import ErrorForm, {ErrorItem, ErrorList} from "../form/ErrorForm";
 import {CenterFormWrap, Form} from "../form/Form";
 
 const Login: React.FC = () => {
@@ -86,15 +86,7 @@ const Login: React.FC = () => {
             <Form>
                 <TextField onChange={e => setUsername(e.target.value)} error={usernameError} required label="Email" />
                 <TextField onChange={e => setPassword(e.target.value)} error={passwordError} required label="Heslo"  type="password" />
-                {errors.length > 0 &&
-                    <ErrorList>
-                        {errors.map((error, index) => {
-                            return (
-                                <ErrorItem key={index}>{error}</ErrorItem>
-                            )
-                        })}
-                    </ErrorList>
-                }
+                <ErrorForm errors={errors} />
                 {status !== 200 && (
                     <ErrorList>
                         {handleError()}
