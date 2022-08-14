@@ -4,6 +4,7 @@ import NavItemsSection from "./NavItemsSection";
 import NavUserSection from "./NavUserSection";
 
 export interface PageProp {
+    page_id: number,
     path: string,
     component_name: string,
     description: string,
