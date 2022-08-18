@@ -13,7 +13,7 @@ import styled from "styled-components";
 import ProfilePage from "../../pages/project/ProfilePage";
 import ProfileSettingsPage from "../../pages/project/ProfileSettingsPage";
 import RedirectPage from "../../pages/abstract/RedirectPage";
-import LoadingSpinner from "../material-ui/components/LoadingSpinner";
+import LoadingSpinner from "../styles/material-ui/components/LoadingSpinner";
 
 const PagesProvider = () => {
     const [pages, setPages] = useState<PageProp[]>([]);

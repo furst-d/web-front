@@ -3,7 +3,7 @@ import {LoadingButton, LoadingButtonProps} from "@mui/lab";
 
 const Button = styled(LoadingButton)<LoadingButtonProps>(({theme}) => ({
     textTransform: "none",
-    fontSize: 20,
+    fontSize: 18,
 
     '&.Mui-disabled': {
         color: theme.palette.primary.contrastText

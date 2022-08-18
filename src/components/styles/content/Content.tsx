@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {StyledLink} from "../navbar/NavItemsSection";
+import {StyledLink} from "../../navbar/NavItemsSection";
 
 export const Content = styled.div`
   background-color: ${p => p.theme.secondary};
@@ -48,4 +48,17 @@ export const SubContent = styled.div`
 
 export const SubMenuStyledLink = styled(StyledLink)`
   justify-content: center;
+`
+
+export const ControlPanelWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`
+
+export const ControlPanel = styled.ul`
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 `

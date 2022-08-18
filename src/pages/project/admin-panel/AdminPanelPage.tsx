@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
 import PersonIcon from '@mui/icons-material/Person';
-import {ContentWrapper, SubContent, SubMenu, SubMenuStyledLink} from "../../../components/content/Content";
+import {ContentWrapper, SubContent, SubMenu, SubMenuStyledLink} from "../../../components/styles/content/Content";
 import {Route, Routes} from "react-router-dom";
 import RedirectPage from "../../abstract/RedirectPage";
 import UsersPage from "./UsersPage";

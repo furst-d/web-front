@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {Form} from "../../../components/form/Form";
-import TextField from "../../../components/material-ui/components/TextField";
+import {Form} from "../styles/form/Form";
+import TextField from "../styles/material-ui/components/TextField";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import Button from "../../../components/material-ui/components/Button";
-import ErrorForm, {ErrorItem, ErrorList} from "../../../components/form/ErrorForm";
+import Button from "../styles/material-ui/components/Button";
+import ErrorForm, {ErrorItem, ErrorList} from "../form/ErrorForm";
 import {DialogContent, FormControlLabel, FormGroup} from "@mui/material";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import {PageProp} from "../../../components/navbar/Navbar";
-import CheckBox from "../../../components/material-ui/components/CheckBox";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import {PageProp} from "../navbar/Navbar";
+import CheckBox from "../styles/material-ui/components/CheckBox";
 
 const AddUser = () => {
     const [email, setEmail] = useState<string>("");

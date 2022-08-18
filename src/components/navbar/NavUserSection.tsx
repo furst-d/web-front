@@ -6,8 +6,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Menu from "../material-ui/components/Menu";
-import Divider from "../material-ui/components/Divider";
+import Menu from "../styles/material-ui/components/Menu";
+import Divider from "../styles/material-ui/components/Divider";
 import {getTokens, removeTokens} from "../../utils/auth/AuthManager"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {NavLink, useNavigate} from "react-router-dom";

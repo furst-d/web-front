@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
-import TextField from "../material-ui/components/TextField";
+import TextField from "../styles/material-ui/components/TextField";
 import LoginIcon from "@mui/icons-material/Login";
-import Button from "../material-ui/components/Button";
-import {CenterFormWrap, Form} from "../form/Form";
+import Button from "../styles/material-ui/components/Button";
+import {CenterFormWrap, Form} from "../styles/form/Form";
 import axios from "../../api/axios";
 import ErrorForm, {ErrorItem, ErrorList} from "../form/ErrorForm";
 

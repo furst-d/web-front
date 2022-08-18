@@ -1,6 +1,6 @@
 import React from 'react';
 import {Helmet} from "react-helmet";
-import {Content} from "../../components/content/Content";
+import {Content} from "../../components/styles/content/Content";
 
 const ProfilePage = () => {
     return (

@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import Button from "../material-ui/components/Button";
-import TextField from "../material-ui/components/TextField";
+import Button from "../styles/material-ui/components/Button";
+import TextField from "../styles/material-ui/components/TextField";
 import LoginIcon from '@mui/icons-material/Login';
 import axios from "../../api/axios";
 import {setTokens} from "../../utils/auth/AuthManager";
 import {Helmet} from "react-helmet";
 import ErrorForm, {ErrorItem, ErrorList} from "../form/ErrorForm";
-import {CenterFormWrap, Form} from "../form/Form";
+import {CenterFormWrap, Form} from "../styles/form/Form";
 
 const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
