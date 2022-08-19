@@ -82,6 +82,7 @@ export const StyledLink = styled(NavLink)`
   gap: 8px;
   padding: 15px 12px;
   cursor: pointer;
+  transition: 0.3s;
 
   &:hover {
     background-color: ${p => p.theme.primary};

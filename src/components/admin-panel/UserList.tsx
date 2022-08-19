@@ -6,6 +6,7 @@ import UserTemplate from "./UserTemplate";
 
 export interface UserProp {
     user_id: number,
+    email: string,
     first_name: string,
     last_name: string,
     activated: number,
