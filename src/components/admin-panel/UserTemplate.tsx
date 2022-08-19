@@ -49,7 +49,7 @@ const UserTemplate = ({data}: UserTemplateProp) => {
             <UserSection>
                 <NameSection>
                     {data.first_name} {data.last_name}
-                    <Tooltip title={data.activated === 1 ? "Uživatel je aktivován" : "Uživatel není aktivován"} placement="top" >
+                    <Tooltip title={data.activated === 1 ? "Uživatel je aktivován" : "Uživatel není aktivován"} placement="top-start" >
                         <VerifiedUserIcon color={data.activated === 1 ? "success" : "error"} />
                     </Tooltip>
                 </NameSection>
