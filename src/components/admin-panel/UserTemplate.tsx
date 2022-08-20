@@ -9,6 +9,7 @@ import EditUser from "./EditUser";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {toast} from "react-toastify";
 import {Tooltip} from "@mui/material";
+import AvatarPreview from "../styles/material-ui/components/AvatarPreview";
 
 interface UserTemplateProp {
     data: UserProp
@@ -20,15 +21,19 @@ const UserTemplate = ({data}: UserTemplateProp) => {
     const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
     const axiosPrivate = useAxiosPrivate();
 
+    const handleError = (error: any) => {
+        if(error.response) {
+            toast.error("Při zpracování požadavku došlo k chybě");
+        }
+    }
+
     const resetAccount = () => {
         axiosPrivate.put(`/api/users/${data.user_id}/reset`)
             .then(() => {
             localStorage.setItem("toast", "Účet uživatele byl resetován");
             window.location.reload();
         }).catch((error) => {
-            if(error.response) {
-                toast.error("Při zpracování požadavku došlo k chybě");
-            }
+            handleError(error);
         });
     }
 
@@ -38,22 +43,29 @@ const UserTemplate = ({data}: UserTemplateProp) => {
                 localStorage.setItem("toast", "Účet byl smazán");
                 window.location.reload();
             }).catch((error) => {
-            if(error.response) {
-                toast.error("Při zpracování požadavku došlo k chybě");
-            }
+            handleError(error);
         });
     }
 
     return (
         <UserTemplateSection>
             <UserSection>
-                <NameSection>
-                    {data.first_name} {data.last_name}
-                    <Tooltip title={data.activated === 1 ? "Uživatel je aktivován" : "Uživatel není aktivován"} placement="top-start" >
-                        <VerifiedUserIcon color={data.activated === 1 ? "success" : "error"} />
-                    </Tooltip>
-                </NameSection>
-                <div>{data.email}</div>
+                {data.avatar
+                    ?
+                    <AvatarPreview src={process.env.REACT_APP_BASE_URL + "/images/" + data.avatar} />
+                    :
+                    <AvatarPreview />
+                }
+                <UserInfoSection>
+                    <NameSection>
+                        {data.first_name} {data.last_name}
+                        <Tooltip title={data.activated === 1 ? "Uživatel je aktivován" : "Uživatel není aktivován"} placement="top-start" >
+                            <VerifiedUserIcon color={data.activated === 1 ? "success" : "error"} />
+                        </Tooltip>
+                    </NameSection>
+                    <div>{data.email}</div>
+                </UserInfoSection>
+
             </UserSection>
             <ButtonSection>
                 <Button size="small" variant="contained" color="info" onClick={() => setOpenEditModal(true)}>Upravit</Button>
@@ -91,6 +103,11 @@ const UserTemplateSection = styled.div`
     `
 
 const UserSection = styled.div`
+  display: flex;
+  gap: 10px;
+`
+
+const UserInfoSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;

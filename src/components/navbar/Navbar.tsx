@@ -12,10 +12,11 @@ export interface PageProp {
 }
 
 interface NavbarProp {
-    pages: PageProp[]
+    pages: PageProp[],
+    avatar: string
 }
 
-const Navbar = ({pages}: NavbarProp) => {
+const Navbar = ({pages, avatar}: NavbarProp) => {
     const [openHamburgerMenu, setOpenHamburgerMenu] = useState<boolean>(false);
 
     const updateOpenHamburgerMenu = (value: boolean) => {
@@ -25,7 +26,7 @@ const Navbar = ({pages}: NavbarProp) => {
     return (
         <NavWrapper>
             <NavItemsSection pages={pages} openHamburgerMenu={openHamburgerMenu} setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
-            <NavUserSection setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
+            <NavUserSection avatar={avatar} setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
         </NavWrapper>
     );
 };

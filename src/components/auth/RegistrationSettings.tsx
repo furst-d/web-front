@@ -7,6 +7,7 @@ import Button from "../styles/material-ui/components/Button";
 import {CenterFormWrap, Form} from "../styles/form/Form";
 import axios from "../../api/axios";
 import ErrorForm, {ErrorItem, ErrorList} from "../form/ErrorForm";
+import {removeTokens} from "../../utils/auth/AuthManager";
 
 const RegistrationSettings = () => {
     const token = window.location.pathname.split("/")[2];
@@ -73,6 +74,7 @@ const RegistrationSettings = () => {
                 setLoading(false);
             } else {
                 localStorage.setItem("toast", "Účet byl úspěšně aktivován");
+                removeTokens();
                 navigate("/");
                 window.location.reload();
             }

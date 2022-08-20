@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import styled from "styled-components";
 import {Badge, MenuItem} from "@mui/material";
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -11,12 +10,14 @@ import Divider from "../styles/material-ui/components/Divider";
 import {getTokens, removeTokens} from "../../utils/auth/AuthManager"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {NavLink, useNavigate} from "react-router-dom";
+import Avatar from "../styles/material-ui/components/Avatar";
 
 interface NavUserSectionProp {
     setOpenHamburgerMenu: (value: boolean) => void;
+    avatar: string;
 }
 
-const NavUserSection = ({ setOpenHamburgerMenu}: NavUserSectionProp) => {
+const NavUserSection = ({ setOpenHamburgerMenu, avatar}: NavUserSectionProp) => {
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
 
@@ -71,7 +72,12 @@ const NavUserSection = ({ setOpenHamburgerMenu}: NavUserSectionProp) => {
                 </MenuItem>
             </Menu>
 
-            <CustomAvatar onClick={handleClickProfile}></CustomAvatar>
+            {avatar
+                ?
+                <Avatar src={process.env.REACT_APP_BASE_URL + "/images/" + avatar} onClick={handleClickProfile} />
+                :
+                <Avatar onClick={handleClickProfile} />
+            }
             <Menu
                 anchorEl={anchorProfile}
                 open={openProfile}
@@ -103,14 +109,6 @@ const UserSection = styled.div`
   gap: 20px;
   align-items: center;
 `
-
-const CustomAvatar = styled(Avatar)`
-  width: 20px;
-  height: 20px;
-  margin-right: 15px;
-  cursor: pointer;
-`
-
 const CustomBadge = styled(Badge)`
   font-size: 50px;
   cursor: pointer;

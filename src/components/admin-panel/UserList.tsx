@@ -10,7 +10,8 @@ export interface UserProp {
     first_name: string,
     last_name: string,
     activated: number,
-    permitted_pages_id: string
+    permitted_pages_id: string,
+    avatar: string
 }
 
 const UserList = () => {
