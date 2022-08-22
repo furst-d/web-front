@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import styled from "styled-components";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import LoadingSpinner from "../styles/material-ui/components/LoadingSpinner";
 import UserTemplate from "./UserTemplate";
+import UserListSection from "../styles/list/UserListSection";
 
 export interface UserProp {
     user_id: number,
@@ -47,8 +47,4 @@ const UserList = () => {
 
 export default UserList;
 
-const UserListSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px
-`
+

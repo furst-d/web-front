@@ -10,7 +10,7 @@ import TrafficLightPage from "../../pages/project/TrafficLightPage";
 import AdminPanelPage from "../../pages/project/admin-panel/AdminPanelPage";
 import NotFoundPage from "../../pages/abstract/NotFoundPage";
 import styled from "styled-components";
-import ProfilePage from "../../pages/project/ProfilePage";
+import ProfilePage from "../../pages/project/profile/ProfilePage";
 import ProfileSettingsPage from "../../pages/project/ProfileSettingsPage";
 import RedirectPage from "../../pages/abstract/RedirectPage";
 import LoadingSpinner from "../styles/material-ui/components/LoadingSpinner";
@@ -65,7 +65,7 @@ const PagesProvider = () => {
                             {pages.length > 0 &&
                                 <Route path="/"  element={<RedirectPage path={pages[0].path} />} />
                             }
-                            <Route path="/profile"  element={<ProfilePage />} />
+                            <Route path="/profile/*"  element={<ProfilePage />} />
                             <Route path="/profile-settings"  element={<ProfileSettingsPage />} />
                             <Route path="*"  element={<NotFoundPage />} />
                         </Routes>

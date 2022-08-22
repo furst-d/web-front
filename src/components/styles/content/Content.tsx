@@ -47,7 +47,7 @@ export const SubContent = styled.div`
 `
 
 export const SubMenuStyledLink = styled(StyledLink)`
-  justify-content: center;
+  border-bottom: 1px solid ${p => p.theme.primary};
 `
 
 export const ControlPanelWrapper = styled.div`
