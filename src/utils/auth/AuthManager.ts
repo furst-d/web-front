@@ -1,8 +1,19 @@
 import {decrypt, encrypt} from "../crypto/cryptoManager";
 import axios from "../../api/axios";
+import jwt_decode from "jwt-decode";
 
 export function removeTokens (): void {
     localStorage.removeItem("auth_token");
+}
+
+export function getUserData (): any {
+    const tokens =  localStorage.getItem("auth_token");
+    if(tokens) {
+        const accessToken =  JSON.parse(decrypt(tokens)).access_token;
+        const decoded: any = jwt_decode(accessToken);
+        return decoded.user;
+    }
+    return null;
 }
 
 export function getTokens (): any {

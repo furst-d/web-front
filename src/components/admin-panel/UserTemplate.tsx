@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {UserProp} from "./UserList";
-import styled from "styled-components";
 import Button from "../styles/material-ui/components/Button";
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import Dialog from "../styles/material-ui/components/Dialog";
@@ -10,7 +9,13 @@ import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {toast} from "react-toastify";
 import {Tooltip} from "@mui/material";
 import AvatarPreview from "../styles/material-ui/components/AvatarPreview";
-
+import {
+    ButtonSection,
+    NameSection,
+    UserInfoSection,
+    UserSection,
+    UserTemplateSection
+} from "../styles/list/UserList";
 interface UserTemplateProp {
     data: UserProp
 }
@@ -86,41 +91,3 @@ const UserTemplate = ({data}: UserTemplateProp) => {
 };
 
 export default UserTemplate;
-
-const UserTemplateSection = styled.div`
-      border: 1px solid ${p => p.theme.bg};
-      border-radius: 5px;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      @media (min-width: 768px) {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-    `
-
-const UserSection = styled.div`
-  display: flex;
-  gap: 10px;
-`
-
-const UserInfoSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`
-
-const NameSection = styled.div`
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      gap: 5px
-    `
-
-const ButtonSection = styled.div`
-      display: flex;
-      gap: 8px;
-    `

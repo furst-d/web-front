@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import jwt_decode from "jwt-decode";
-import {getTokens} from "../../../utils/auth/AuthManager";
+import {getUserData} from "../../../utils/auth/AuthManager";
 import styled from "styled-components";
 
 export interface UserTokenProp {
@@ -16,9 +15,7 @@ const InfoPage = () => {
     const [user, setUser] = useState<UserTokenProp>();
 
     useEffect(() => {
-        const accessToken = getTokens().access_token;
-        const decoded: any = jwt_decode(accessToken);
-        const user = decoded.user;
+        const user = getUserData();
         user.registered = new Date(user.registered).toLocaleString();
         setUser(user);
     }, []);

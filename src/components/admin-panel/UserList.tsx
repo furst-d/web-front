@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import LoadingSpinner from "../styles/material-ui/components/LoadingSpinner";
 import UserTemplate from "./UserTemplate";
-import UserListSection from "../styles/list/UserListSection";
+import {UserListSection} from "../styles/list/UserList";
 
 export interface UserProp {
     user_id: number,
