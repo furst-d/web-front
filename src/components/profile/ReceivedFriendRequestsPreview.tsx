@@ -25,23 +25,32 @@ const ReceivedFriendRequestsPreview = ({data}: FriendTemplateProp) => {
 
     const handleError = (error: any) => {
         if(error.response) {
-            toast.error("Při zpracování požadavku došlo k chybě");
+            if(error.response.status === 404) {
+                toast.error("Chybný identifikátor požadavku");
+            } else {
+                toast.error("Při zpracování požadavku došlo k chybě");
+            }
         }
     }
 
     const acceptRequest = () => {
-        console.log("Dodělat");
-    }
-
-    const rejectRequest = () => {
-        console.log("Dodělat");
-        /*axiosPrivate.delete(`/api/users/${data.user_id}`)
+        axiosPrivate.put(`/api/users/friend-requests/${data.requestId}/accept`)
             .then(() => {
-                localStorage.setItem("toast", "Účet byl smazán");
+                localStorage.setItem("toast", "Žádost byla přijata");
                 window.location.reload();
             }).catch((error) => {
             handleError(error);
-        });*/
+        });
+    }
+
+    const rejectRequest = () => {
+        axiosPrivate.put(`/api/users/friend-requests/${data.requestId}/reject`)
+            .then(() => {
+                localStorage.setItem("toast", "Žádost byla odmítnuta");
+                window.location.reload();
+            }).catch((error) => {
+            handleError(error);
+        });
     }
 
     return (

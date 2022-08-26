@@ -25,19 +25,22 @@ const FriendPreview = ({data}: FriendTemplateProp) => {
 
     const handleError = (error: any) => {
         if(error.response) {
-            toast.error("Při zpracování požadavku došlo k chybě");
+            if(error.response.status === 404) {
+                toast.error("Chybný identifikátor požadavku");
+            } else {
+                toast.error("Při zpracování požadavku došlo k chybě");
+            }
         }
     }
 
     const removeFriend = () => {
-        console.log("Dodělat");
-        /*axiosPrivate.delete(`/api/users/${data.user_id}`)
+        axiosPrivate.delete(`/api/users/friends/${data.userId}`)
             .then(() => {
-                localStorage.setItem("toast", "Účet byl smazán");
+                localStorage.setItem("toast", "Uživatel byl odebrán z přátel");
                 window.location.reload();
             }).catch((error) => {
             handleError(error);
-        });*/
+        });
     }
 
     return (
