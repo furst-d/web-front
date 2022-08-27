@@ -45,7 +45,7 @@ const Notifications = ({setOpenHamburgerMenu, notifications}: NotificationsProp)
                 {
                     notifications.length === 0
                         ?
-                        <div>Momentálně nemáte žádná upozornění {notifications.length}</div>
+                        <EmptyNotification>Momentálně nemáte žádná upozornění</EmptyNotification>
                         :
                         handleNotifications()
                 }
@@ -64,4 +64,9 @@ const CustomBadge = styled(Badge)`
 
 const CustomNotificationIcon = styled(NotificationsIcon)`
   font-size: 50px;
+`
+
+const EmptyNotification = styled.div`
+  font-family: 'Open Sans', sans-serif;
+  padding: 10px;
 `
