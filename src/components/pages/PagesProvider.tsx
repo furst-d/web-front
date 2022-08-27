@@ -17,6 +17,7 @@ import LoadingSpinner from "../styles/material-ui/components/LoadingSpinner";
 
 const PagesProvider = () => {
     const [pages, setPages] = useState<PageProp[]>([]);
+    const [notifications, setNotifications] = useState([]);
     const [isPending, setIsPending] = useState(true);
     const [avatar, setAvatar] = useState("");
     const axiosPrivate = useAxiosPrivate();
@@ -35,6 +36,11 @@ const PagesProvider = () => {
                 }
                 setIsPending(false);
             })
+        axiosPrivate.get(`/api/users/notifications`)
+            .then(res => {
+                setNotifications(res.data.data);
+                setIsPending(false);
+            })
     }, [axiosPrivate])
 
     const PageComponents: any = {
@@ -48,7 +54,7 @@ const PagesProvider = () => {
 
     return (
         <>
-            <Navbar avatar={avatar} pages={pages} />
+            <Navbar avatar={avatar} pages={pages} notifications={notifications} />
             {isPending
                 ?
                 <LoadingSpinner />
@@ -89,5 +95,4 @@ const ContentWrapper = styled.div`
   justify-content: center;
   max-width: 90em;
   width: 100%;
-  flex: 1 1 auto;
 `

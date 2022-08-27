@@ -8,7 +8,7 @@ import EditUser from "./EditUser";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {toast} from "react-toastify";
 import {Tooltip} from "@mui/material";
-import AvatarPreview from "../styles/material-ui/components/AvatarPreview";
+import AvatarPreview from "../styles/material-ui/components/avatar/AvatarPreview";
 import {
     ButtonSection,
     NameSection,

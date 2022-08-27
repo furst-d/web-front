@@ -11,12 +11,20 @@ export interface PageProp {
     icon_name: string
 }
 
+export interface NotificationProp {
+    type: string,
+    content: string,
+    seen: number,
+    created_date: string,
+}
+
 interface NavbarProp {
     pages: PageProp[],
+    notifications: NotificationProp[],
     avatar: string
 }
 
-const Navbar = ({pages, avatar}: NavbarProp) => {
+const Navbar = ({pages, notifications, avatar}: NavbarProp) => {
     const [openHamburgerMenu, setOpenHamburgerMenu] = useState<boolean>(false);
 
     const updateOpenHamburgerMenu = (value: boolean) => {
@@ -26,7 +34,7 @@ const Navbar = ({pages, avatar}: NavbarProp) => {
     return (
         <NavWrapper>
             <NavItemsSection pages={pages} openHamburgerMenu={openHamburgerMenu} setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
-            <NavUserSection avatar={avatar} setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
+            <NavUserSection notifications={notifications} avatar={avatar} setOpenHamburgerMenu={updateOpenHamburgerMenu}/>
         </NavWrapper>
     );
 };

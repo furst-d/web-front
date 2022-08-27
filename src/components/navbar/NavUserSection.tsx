@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from "styled-components";
-import {Badge, MenuItem} from "@mui/material";
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import {MenuItem} from "@mui/material";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -10,21 +9,22 @@ import Divider from "../styles/material-ui/components/Divider";
 import {getTokens, removeTokens} from "../../utils/auth/AuthManager"
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {NavLink, useNavigate} from "react-router-dom";
-import Avatar from "../styles/material-ui/components/Avatar";
+import Avatar from "../styles/material-ui/components/avatar/Avatar";
+import {NotificationProp} from "./Navbar";
+import Notifications from "../notifications/Notifications";
 
 interface NavUserSectionProp {
     setOpenHamburgerMenu: (value: boolean) => void;
+    notifications: NotificationProp[];
     avatar: string;
 }
 
-const NavUserSection = ({ setOpenHamburgerMenu, avatar}: NavUserSectionProp) => {
+const NavUserSection = ({ setOpenHamburgerMenu, avatar, notifications}: NavUserSectionProp) => {
     const axiosPrivate = useAxiosPrivate();
     const navigate = useNavigate();
 
     const [anchorProfile, setAnchorProfile] = React.useState<null | HTMLElement>(null);
     const openProfile = Boolean(anchorProfile);
-    const [anchorBadge, setAnchorBadge] = React.useState<null | HTMLElement>(null);
-    const openBadge = Boolean(anchorBadge);
 
     const handleClickProfile = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorProfile(event.currentTarget);
@@ -32,14 +32,6 @@ const NavUserSection = ({ setOpenHamburgerMenu, avatar}: NavUserSectionProp) => 
     };
     const handleCloseProfile = () => {
         setAnchorProfile(null);
-    };
-
-    const handleClickBadge = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorBadge(event.currentTarget);
-        setOpenHamburgerMenu(false);
-    };
-    const handleCloseBadge = () => {
-        setAnchorBadge(null);
     };
 
     const handleLogout = () => {
@@ -59,19 +51,7 @@ const NavUserSection = ({ setOpenHamburgerMenu, avatar}: NavUserSectionProp) => 
 
     return (
         <UserSection>
-            <CustomBadge onClick={handleClickBadge} color="primary" badgeContent={1}  max={999}>
-                <CustomNotificationIcon />
-            </CustomBadge>
-
-            <Menu
-                anchorEl={anchorBadge}
-                open={openBadge}
-                onClose={handleCloseBadge}>
-                <MenuItem onClick={handleCloseBadge} disableRipple>
-                    Momentálně nemáte žádná upozornění
-                </MenuItem>
-            </Menu>
-
+            <Notifications notifications={notifications} setOpenHamburgerMenu={setOpenHamburgerMenu} />
             {avatar
                 ?
                 <Avatar src={process.env.REACT_APP_BASE_URL + "/images/" + avatar} onClick={handleClickProfile} />
@@ -109,15 +89,6 @@ const UserSection = styled.div`
   gap: 20px;
   align-items: center;
 `
-const CustomBadge = styled(Badge)`
-  font-size: 50px;
-  cursor: pointer;
-`
-
-const CustomNotificationIcon = styled(NotificationsIcon)`
-  font-size: 50px;
-`
-
 
 export const StyledLink = styled(NavLink)`
   &:hover {

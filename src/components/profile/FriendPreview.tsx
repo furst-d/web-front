@@ -4,7 +4,7 @@ import Dialog from "../styles/material-ui/components/Dialog";
 import ConfirmationDialog from "../dialog/ConfirmationDialog";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import {toast} from "react-toastify";
-import AvatarPreview from "../styles/material-ui/components/AvatarPreview";
+import AvatarPreview from "../styles/material-ui/components/avatar/AvatarPreview";
 import {FriendProp} from "./FriendsList";
 
 import {

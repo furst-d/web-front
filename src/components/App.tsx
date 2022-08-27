@@ -27,9 +27,9 @@ export default App;
 const Application = styled.div`
   background: ${p => p.theme.bg};
   color: ${p => p.theme.text};
-  height: 100vh;
   font-family: 'Open Sans', sans-serif;
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
 `
 

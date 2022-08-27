@@ -41,6 +41,15 @@ const GlobalStyle = createGlobalStyle<{theme: ColorTheme}>`
     margin: 0;
     padding: 0;
   }
+  html, body, #root {
+    height: 100%;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+  }
+
   .Toastify__toast-theme--dark {
     background-color: ${theme.secondary};
   }
