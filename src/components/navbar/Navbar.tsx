@@ -12,6 +12,7 @@ export interface PageProp {
 }
 
 export interface NotificationProp {
+    notification_id: number,
     type: string,
     content: string,
     seen: number,

@@ -3,6 +3,7 @@ import {NotificationProp} from "../navbar/Navbar";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import AvatarNotification from "../styles/material-ui/components/avatar/AvatarNotification";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 interface NotificationPreviewProp {
     data: NotificationProp;
@@ -13,6 +14,7 @@ const NotificationPreview = ({data, setAnchorBadge}: NotificationPreviewProp, { 
     const [content, setContent] = useState<any>([]);
     const [message, setMessage] = useState("");
     const [redirect, setRedirect] = useState("/");
+    const axiosPrivate = useAxiosPrivate();
 
     useEffect(() => {
         const contentLoc = JSON.parse(data.content);
@@ -23,7 +25,7 @@ const NotificationPreview = ({data, setAnchorBadge}: NotificationPreviewProp, { 
     const handleClick = () => {
         data.seen = 1;
         setAnchorBadge(null);
-        //PUT na update seen
+        axiosPrivate.put(`/api/users/notifications/${data.notification_id}/seen`);
     }
 
     const getMessage = (name: string, lastname: string) => {
