@@ -53,6 +53,23 @@ const GlobalStyle = createGlobalStyle<{theme: ColorTheme}>`
   .Toastify__toast-theme--dark {
     background-color: ${theme.secondary};
   }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${theme.bg};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${theme.primary};
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #105fcc;
+  }
 `
 
 const materialTheme = createTheme({
@@ -77,7 +94,7 @@ const materialTheme = createTheme({
         bg: {
             main: theme.bg,
             contrastText: theme.text,
-        },
+        }
     },
 });
 
@@ -85,5 +102,4 @@ export interface ColorTheme {
     bg: string;
     primary: string;
     secondary: string;
-    text: string;
 }
