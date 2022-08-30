@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Button from "../styles/material-ui/components/Button";
-import TextField from "../styles/material-ui/components/TextField";
+import TextField from "../styles/material-ui/components/input/TextField";
 import LoginIcon from '@mui/icons-material/Login';
 import axios from "../../api/axios";
 import {setTokens} from "../../utils/auth/AuthManager";

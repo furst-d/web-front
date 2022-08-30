@@ -29,7 +29,7 @@ const StyleProvider: ({children}: { children: any }) => JSX.Element = ({children
 
 export default StyleProvider;
 
-const theme = {
+export const theme = {
     bg: "#323232",
     primary: "#3da2f3",
     secondary: "#3f3f3f",
@@ -70,9 +70,47 @@ const GlobalStyle = createGlobalStyle<{theme: ColorTheme}>`
   ::-webkit-scrollbar-thumb:hover {
     background: #105fcc;
   }
+  
+  fieldset:hover {
+    background-color: ${theme.primary};
+  }
 `
 
+const menuProps = {
+    PaperProps: {
+        style: {
+            backgroundColor: theme.secondary,
+            color: theme.text,
+            '&:hover': {
+                color: theme.primary,
+            }
+        },
+    },
+};
+
 const materialTheme = createTheme({
+    components: {
+        MuiSelect: {
+            defaultProps: {
+                MenuProps: menuProps
+            }
+        },
+        MuiButton: {
+            defaultProps: {
+                variant: "contained",
+
+            }
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: theme.primary
+                    }
+                }
+            }
+        }
+    },
     breakpoints: {
         values: {
             xs: 0,

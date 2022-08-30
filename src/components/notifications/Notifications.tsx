@@ -1,5 +1,5 @@
 import React from 'react';
-import Menu from "../styles/material-ui/components/Menu";
+import Menu from "../styles/material-ui/components/menu/Menu";
 import {Badge} from "@mui/material";
 import styled from "styled-components";
 import NotificationsIcon from "@mui/icons-material/Notifications";

@@ -19,7 +19,7 @@ export const ContentWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   width: 100vw;
   margin: 1em;
 

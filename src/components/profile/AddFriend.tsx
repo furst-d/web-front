@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Form} from "../styles/form/Form";
-import TextField from "../styles/material-ui/components/TextField";
+import TextField from "../styles/material-ui/components/input/TextField";
 import {DialogContent} from "@mui/material";
 import ErrorForm, {ErrorItem, ErrorList} from "../form/ErrorForm";
 import Button from "../styles/material-ui/components/Button";

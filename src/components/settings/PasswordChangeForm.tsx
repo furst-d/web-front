@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {LeftForm, StartFormWrap} from "../styles/form/Form";
-import TextField from "../styles/material-ui/components/TextField";
+import TextField from "../styles/material-ui/components/input/TextField";
 import ErrorForm, {ErrorItem, ErrorList} from "../form/ErrorForm";
 import Button from "../styles/material-ui/components/Button";
 import EditIcon from "@mui/icons-material/Edit";
