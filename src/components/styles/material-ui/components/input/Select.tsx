@@ -5,17 +5,6 @@ const Select = styled(SelectOrig)<SelectProps>(({theme}) => ({
         borderColor: theme.palette.primary.contrastText,
     },
 
-    '&:hover fieldset': {
-        borderColor: theme.palette.primary.main,
-    },
-
-    '& .MuiSelect-select': {
-        color: theme.palette.primary.contrastText,
-        '&:hover fieldset': {
-            borderColor: theme.palette.primary.main,
-        }
-    },
-
     '& .MuiSelect-icon': {
         color: theme.palette.primary.contrastText,
     },
