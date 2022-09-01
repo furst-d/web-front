@@ -11,9 +11,9 @@ import {
     ButtonSection,
     NameSection,
     UserInfoSection,
-    UserSection,
-    UserTemplateSection
+    UserSection
 } from "../styles/list/UserList";
+import {ListTemplateSection} from "../styles/list/List";
 
 interface FriendTemplateProp {
     data: FriendProp
@@ -44,7 +44,7 @@ const FriendPreview = ({data}: FriendTemplateProp) => {
     }
 
     return (
-        <UserTemplateSection>
+        <ListTemplateSection>
             <UserSection>
                 {data.avatar
                     ?
@@ -66,7 +66,7 @@ const FriendPreview = ({data}: FriendTemplateProp) => {
             <Dialog open={openDeleteModal} onClose={() => setOpenDeleteModal(false)}>
                 <ConfirmationDialog content={`Opravdu si přejete odebrat z přátel uživatele ${data.name} ${data.lastName}?`} onAccept={removeFriend} onClose={() => setOpenDeleteModal(false)} />
             </Dialog>
-        </UserTemplateSection>
+        </ListTemplateSection>
     );
 };
 

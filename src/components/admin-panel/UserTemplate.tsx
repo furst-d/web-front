@@ -13,9 +13,9 @@ import {
     ButtonSection,
     NameSection,
     UserInfoSection,
-    UserSection,
-    UserTemplateSection
+    UserSection
 } from "../styles/list/UserList";
+import {ListTemplateSection} from "../styles/list/List";
 interface UserTemplateProp {
     data: UserProp
 }
@@ -53,7 +53,7 @@ const UserTemplate = ({data}: UserTemplateProp) => {
     }
 
     return (
-        <UserTemplateSection>
+        <ListTemplateSection>
             <UserSection>
                 {data.avatar
                     ?
@@ -86,7 +86,7 @@ const UserTemplate = ({data}: UserTemplateProp) => {
             <Dialog open={openDeleteModal} onClose={() => setOpenDeleteModal(false)}>
                 <ConfirmationDialog content={`Opravdu si přejete smazat účet uživateli ${data.first_name} ${data.last_name}?`} onAccept={deleteAccount} onClose={() => setOpenDeleteModal(false)} />
             </Dialog>
-        </UserTemplateSection>
+        </ListTemplateSection>
     );
 };
 
