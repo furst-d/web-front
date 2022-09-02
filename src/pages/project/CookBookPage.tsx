@@ -27,7 +27,7 @@ const CookBookPage = () => {
             <SubMenuWrapper>
                 <SubMenu>
                     <li><SubMenuStyledLink to={"foods"} className="link-active" ><DinnerDiningIcon /> Jídla</SubMenuStyledLink></li>
-                    <li><SubMenuStyledLink to={"side-dish"} className="link-active" ><RiceBowlIcon /> Přílohy</SubMenuStyledLink></li>
+                    <li><SubMenuStyledLink to={"side-dishes"} className="link-active" ><RiceBowlIcon /> Přílohy</SubMenuStyledLink></li>
                     <li><SubMenuStyledLink to={"ingredients"} className="link-active" ><CoffeeIcon /> Suroviny</SubMenuStyledLink></li>
                 </SubMenu>
                 <SubMenu>
@@ -67,7 +67,7 @@ const CookBookPage = () => {
                 <Routes>
                     <Route path="*"  element={<RedirectPage path="foods" />} />
                     <Route path="foods"  element={<FoodPage />} />
-                    <Route path="side-dish"  element={<SideDishPage />} />
+                    <Route path="side-dishes"  element={<SideDishPage />} />
                     <Route path="ingredients"  element={<IngredientsPage />} />
                     <Route path="collections/1"  element={<IngredientsPage />} />
                 </Routes>

@@ -3,11 +3,13 @@ import {Helmet} from "react-helmet";
 import {ControlPanel, ControlPanelWrapper} from "../../../components/styles/content/Content";
 import Button from "../../../components/styles/material-ui/components/Button";
 import Dialog from "../../../components/styles/material-ui/components/Dialog";
-import IngredientList from "../../../components/cookbook/IngredientList";
+import IngredientList from "../../../components/cookbook/ingredients/IngredientList";
 import TextField from "../../../components/styles/material-ui/components/input/TextField";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import LoadingSpinner from "../../../components/styles/material-ui/components/LoadingSpinner";
-import IngredientTemplate from "../../../components/cookbook/IngredientTemplate";
+import IngredientTemplate from "../../../components/cookbook/ingredients/IngredientTemplate";
+import AddIcon from '@mui/icons-material/Add';
+import styled from "styled-components";
 
 export interface AllergenProps {
     allergen_id: number,
@@ -89,3 +91,9 @@ const IngredientsPage = () => {
 };
 
 export default IngredientsPage;
+
+const IconButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`

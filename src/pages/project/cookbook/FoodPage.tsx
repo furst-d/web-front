@@ -15,7 +15,7 @@ const FoodPage = () => {
             </Helmet>
             <ControlPanelWrapper>
                 <ControlPanel>
-                    <li><Button variant="contained" color="success" onClick={() =>setOpenAddFoodModal(true)}>Přidat surovinu</Button></li>
+                    <li><Button variant="contained" color="success" onClick={() =>setOpenAddFoodModal(true)}>Přidat jídlo</Button></li>
                     <li><Button variant="contained" color="info" onClick={() =>setOpenAddFoodModal(true)}>Filtrovat</Button></li>
                 </ControlPanel>
                 <ControlPanel>

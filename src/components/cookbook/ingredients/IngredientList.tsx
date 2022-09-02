@@ -1,7 +1,7 @@
 import React from 'react';
-import {AllergenProps, IngredientProps} from "../../pages/project/cookbook/IngredientsPage";
+import {AllergenProps, IngredientProps} from "../../../pages/project/cookbook/IngredientsPage";
 import IngredientPreview from "./IngredientPreview";
-import {ListSection} from "../styles/list/List";
+import {ListSection} from "../../styles/list/List";
 
 interface IngredientListProps {
     ingredients: IngredientProps[],

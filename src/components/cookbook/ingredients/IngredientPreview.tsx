@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import Button from "../styles/material-ui/components/Button";
-import Dialog from "../styles/material-ui/components/Dialog";
-import ConfirmationDialog from "../dialog/ConfirmationDialog";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import Button from "../../styles/material-ui/components/Button";
+import Dialog from "../../styles/material-ui/components/Dialog";
+import ConfirmationDialog from "../../dialog/ConfirmationDialog";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {toast} from "react-toastify";
 
 import {
     ButtonSection,
-} from "../styles/list/UserList";
-import {AllergenProps, IngredientProps} from "../../pages/project/cookbook/IngredientsPage";
-import {ListTemplateSection} from "../styles/list/List";
+} from "../../styles/list/UserList";
+import {AllergenProps, IngredientProps} from "../../../pages/project/cookbook/IngredientsPage";
+import {ListTemplateSection} from "../../styles/list/List";
 import {Tooltip} from "@mui/material";
 import IngredientTemplate from "./IngredientTemplate";
 

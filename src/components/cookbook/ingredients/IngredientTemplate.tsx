@@ -1,19 +1,20 @@
 import React, {useState} from 'react';
-import {Form} from "../styles/form/Form";
-import TextField from "../styles/material-ui/components/input/TextField";
+import {Form} from "../../styles/form/Form";
+import TextField from "../../styles/material-ui/components/input/TextField";
 import {
     DialogContent,
     FormControl, SelectChangeEvent,
 } from "@mui/material";
-import ErrorForm from "../form/ErrorForm";
-import Button from "../styles/material-ui/components/Button";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import MenuItem from "../styles/material-ui/components/menu/MenuItem";
-import MultiSelect from "../styles/material-ui/components/input/MultiSelect";
-import InputLabel from "../styles/material-ui/components/input/InputLabel";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import {AllergenProps, IngredientProps} from "../../pages/project/cookbook/IngredientsPage";
+import ErrorForm from "../../form/ErrorForm";
+import Button from "../../styles/material-ui/components/Button";
+import MenuItem from "../../styles/material-ui/components/menu/MenuItem";
+import MultiSelect from "../../styles/material-ui/components/input/MultiSelect";
+import InputLabel from "../../styles/material-ui/components/input/InputLabel";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import {AllergenProps, IngredientProps} from "../../../pages/project/cookbook/IngredientsPage";
 import {toast} from "react-toastify";
+import EditIcon from "@mui/icons-material/Edit";
+import AddIcon from "@mui/icons-material/Add";
 
 export interface EditIngredientProps {
     id: number;
@@ -129,7 +130,7 @@ const EditIngredient = ({allergens, ingredients, setOpenIngredientModal, selecte
     return (
         <DialogContent color="secondary">
             <Form>
-                <TextField onChange={e => setIngredientName(e.target.value)} error={nameError} value={ingredientName} required label="Surovina" />
+                <TextField onChange={e => setIngredientName(e.target.value)} error={nameError} value={ingredientName} required label="Název suroviny" />
                 <FormControl >
                     <InputLabel>Alergeny</InputLabel>
                     <MultiSelect
@@ -148,7 +149,7 @@ const EditIngredient = ({allergens, ingredients, setOpenIngredientModal, selecte
                     </MultiSelect>
                 </FormControl>
                 <ErrorForm errors={errors} />
-                <Button variant="contained" loading={loading} startIcon={<PersonAddIcon />} loadingPosition="start" onClick={validateIngredient}>{edit ? "Upravit" : "Přidat"}</Button>
+                <Button variant="contained" loading={loading} startIcon={edit ? <EditIcon /> : <AddIcon />} loadingPosition="start" onClick={validateIngredient}>{edit ? "Upravit" : "Přidat"}</Button>
             </Form>
         </DialogContent>
     );
