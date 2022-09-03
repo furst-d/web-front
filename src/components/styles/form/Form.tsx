@@ -23,7 +23,7 @@ export const Form = styled.div`
   font-family: 'Open Sans', sans-serif;
   background-color: ${p => p.theme.secondary};
   color: ${p => p.theme.text};
-  padding: 10px;
+
   display: flex;
   flex-direction: column;
   gap: 30px;

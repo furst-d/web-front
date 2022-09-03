@@ -52,7 +52,10 @@ const CookBookPage = () => {
                             </AccordionSummary>
                             <AccordionDetails>
                                 <SharedUserCollectionFood>
-                                    <li><SubMenuStyledLink to={"/admin-panel/users"} className="link-active" ><RestaurantMenuIcon /> Nezařazené</SubMenuStyledLink></li>
+                                    <div>
+                                        <li><SubMenuStyledLink to={"/admin-panel/users"} className="link-active" ><DinnerDiningIcon /> Jídla</SubMenuStyledLink></li>
+                                        <li><SubMenuStyledLink to={"/admin-panel/users"} className="link-active" ><RiceBowlIcon /> Přílohy</SubMenuStyledLink></li>
+                                    </div>
                                     <div>
                                         <li><SubMenuStyledLink to={"/admin-panel/users"} className="link-active" ><LibraryBooksIcon /> Omáčky</SubMenuStyledLink></li>
                                         <li><SubMenuStyledLink to={"/admin-panel/users"} className="link-active" ><LibraryBooksIcon /> Dezerty</SubMenuStyledLink></li>

@@ -1,17 +1,21 @@
 import React, {useState} from 'react';
 import {Form} from "../../styles/form/Form";
 import TextField from "../../styles/material-ui/components/input/TextField";
-import {DialogContent, FormControl, InputAdornment, OutlinedInput} from "@mui/material";
+import {DialogContent, FormControl, Tooltip} from "@mui/material";
 import ErrorForm from "../../form/ErrorForm";
-import Button from "../../styles/material-ui/components/Button";
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import {toast} from "react-toastify";
-import InputLabel from "../../styles/material-ui/components/input/InputLabel";
-import MultiSelect from "../../styles/material-ui/components/input/MultiSelect";
-import MenuItem from "../../styles/material-ui/components/menu/MenuItem";
 import styled from "styled-components";
+import InputAdornment from "../../styles/material-ui/components/input/InputAdornment";
+import Select from "../../styles/material-ui/components/input/Select";
+import InputLabel from "../../styles/material-ui/components/input/InputLabel";
+import CloseIcon from '@mui/icons-material/Close';
+import MenuItem from "../../styles/material-ui/components/menu/MenuItem";
+import MultiTextField from "../../styles/material-ui/components/input/MultiTextField";
+import Button from "../../styles/material-ui/components/Button";
+import IconButton from "../../styles/material-ui/components/IconButton";
 
 export interface SideDishTemplateProps {
     id: number;
@@ -25,11 +29,17 @@ export interface SideDishTemplateProps {
 }
 
 const SideDishTemplate = ({id, name, edit}: SideDishTemplateProps) => {
+    const inputArr = [
+        {
+            value: ""
+        }
+    ];
+
     const [sideDishName, setSideDishName] = useState<string>(name);
     const [nameError, setNameError] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
     const [errors, setErrors] = useState<string[]>([]);
-    const [ingredients, setIngredients] = useState<number[]>([]);
+    const [ingredients, setIngredients] = useState(inputArr);
     const axiosPrivate = useAxiosPrivate();
 
     const handleError = (error: any) => {
@@ -64,8 +74,38 @@ const SideDishTemplate = ({id, name, edit}: SideDishTemplateProps) => {
     }
 
     const addIngredient = () => {
-        setIngredients(oldIngredients => [...oldIngredients, 5] );
+        // @ts-ignore
+        setIngredients(ingredient => {
+            return [
+                ...ingredient,
+                {
+                    value: ""
+                }
+            ];
+        });
     }
+
+    // @ts-ignore
+    const removeIngredient = e => {
+        const index = e.target.id;
+        console.log("Mazaný index: " + index);
+        const newArr = [...ingredients];
+        newArr.splice(index, 1);
+        setIngredients(newArr);
+    }
+
+    // @ts-ignore
+    const handleIngredientChange = e => {
+        e.preventDefault();
+        const index = e.target.id;
+        console.log("Index: " + index);
+        setIngredients(ingredient => {
+            const newArr = ingredient.slice();
+            newArr[index].value = e.target.value;
+            return newArr;
+        });
+        console.log(ingredients);
+    };
 
     const addSideDish = () => {
         /*const selectedAllergens = allergens.filter((allergen) => selectedAllergensName.includes(allergen.name));
@@ -125,31 +165,30 @@ const SideDishTemplate = ({id, name, edit}: SideDishTemplateProps) => {
         <DialogContent color="secondary">
             <Form>
                 <TextField onChange={e => setSideDishName(e.target.value)} error={nameError} value={sideDishName} required label="Název přílohy" />
-                <div onClick={addIngredient}>Přidat surovinu</div>
+                <Button variant="contained" color="success" size="small" loading={loading} startIcon={<AddIcon />} loadingPosition="start" onClick={addIngredient}>Přidat surovinu</Button>
                 {
-                    ingredients.map((ingredient) => {
+                    ingredients.map((ingredient, i) => {
                         return (
-                            <div>{ingredient}</div>
+                            <IngredientForm key={i}>
+                                <TextField onChange={handleIngredientChange} id={i.toString()} value={ingredient.value} required label="Test" />
+                                <FormControl fullWidth>
+                                    <InputLabel>Název suroviny</InputLabel>
+                                    <Select label="Název suroviny" fullWidth><MenuItem>s=ojhspodjhpsdoh</MenuItem></Select>
+                                </FormControl>
+                                <TextField
+                                    sx={{maxWidth: 300}}
+                                    type="number"
+                                    label="Množství"
+                                    InputLabelProps={{shrink: true}}
+                                    InputProps={{endAdornment: <InputAdornment position="end">kg</InputAdornment>}}
+                                />
+                                <IconButton onClick={removeIngredient} id={i.toString()}><Tooltip title="Odstranit"><CloseIcon id={i.toString()} /></Tooltip></IconButton>
+                            </IngredientForm>
                         )
                     })
                 }
-                <IngredientForm>
-                    <TextField onChange={e => setSideDishName(e.target.value)} error={nameError} value={sideDishName} required label="Název suroviny" />
-                    <FormControl >
-                        <InputLabel>Množství</InputLabel>
-                        <OutlinedInput
-                            sx={{width: 100}}
-                            label="Množství"
-                            value={5}
-                            endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-                        />
-                    </FormControl>
-                </IngredientForm>
-                <TextField
-                    label="Postup receptu"
-                    rows={10}
-                    multiline
-                />
+                <Button variant="contained" color="secondary" size="small" loading={loading} startIcon={<AddIcon />} loadingPosition="start" onClick={addIngredient}>Přidat stopky</Button>
+                <MultiTextField label="Postup receptu" />
                 <ErrorForm errors={errors} />
                 <Button variant="contained" loading={loading} startIcon={edit ? <EditIcon /> : <AddIcon />} loadingPosition="start" onClick={validateIngredient}>{edit ? "Upravit" : "Přidat"}</Button>
             </Form>
@@ -163,8 +202,11 @@ const IngredientForm = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
 
   @media (min-width: 768px) {
     flex-direction: row;
   }
 `
+
+
